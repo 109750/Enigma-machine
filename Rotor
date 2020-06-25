@@ -31,7 +31,7 @@ class Enigma:
     return seq[n:] + seq[:n]
 
   #terug naar reflector    
-  omgekeerd_cijfervolgorde = [cijfer for cijfer in reversed]
+  
   #door de rotor gaan
   def rotor(seq, terug, numb, rn):
     number = []
@@ -48,14 +48,3 @@ class Enigma:
             number.append(seqterug[numb[i]])
 
     return number
-
-RotorIM = shiftstart(RotorI, RotIstart)
-RotorIIM = shiftstart(RotorII, RotIIstart)
-RotorIIIM = shiftstart(RotorIII, RotIIIstart)
-
-SeqI = rotor(RotorIM, 0, Seq, 1)
-SeqII = rotor(RotorIIM, 0, SeqI, 2)
-SeqIII = rotor(RotorIIIM, 0, SeqII, 3)
-SeqIV = rotor(RotorIIIM, 1, SeqIV, 3)
-SeqV = rotor(RotorIIM, 1, SeqVI, 2)
-SeqVI = rotor(RotorIM, 1, SeqVII, 1)
