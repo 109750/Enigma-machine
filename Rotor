@@ -29,3 +29,15 @@ def shift(seq, n, rn, numb):
         n = - math.trunc(n/675) % len(seq)
        
     return seq[n:] + seq[:n]
+    
+    def shift(seq, n, rn, numb):
+    if rn == 1:
+        n = -n % len(seq)
+ 
+    elif rn == 2:
+        n = - math.trunc(n/25) % len(seq)
+        
+    elif rn == 3:
+        n = - math.trunc(n/675) % len(seq)
+       
+    return seq[n:] + seq[:n]
