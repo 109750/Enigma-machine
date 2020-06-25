@@ -1,23 +1,24 @@
 import math
- 
+
 #input bericht
 message = input()
 message = message.upper()
-
 #Input settings
-RotorI = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
-RotorII = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
-RotorIII = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
-Reflektor = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
-RotIstart = 0
-RotIIstart = 0
-RotIIIstart = 0
- 
-def shiftstart(seq, n):
+class Enigma: 
+  RotorI = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+  RotorII = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+  RotorIII = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+  Reflektor = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+  RotIstart = 0
+  RotIIstart = 0
+  RotIIIstart = 0
+
+ #rotering van de start van de rotor
+  def shiftstart(seq, n):
     return seq[n:] + seq[:n]
- 
-#rotering van de rotors
-def shift(seq, n, rn, numb):
+
+  #rotering van de rotors
+  def shift(seq, n, rn, numb):
     if rn == 1:
         n = -n % len(seq)
  
@@ -26,35 +27,35 @@ def shift(seq, n, rn, numb):
         
     elif rn == 3:
         n = - math.trunc(n/675) % len(seq)
-       
+
     return seq[n:] + seq[:n]
- 
-#terug naar reflector    
-def rotorterug(seq):
-    rotorterug = ['empty']*26
-    for i in range(26):
-        rotorterug[seq[i]] = i
-    
-    return rotorterug
- 
-#door de rotor gaan
-def rotor(seq, terug, numb, rn):
+
+  #terug naar reflector    
+  omgekeerd_cijfervolgorde = [cijfer for cijfer in reversed]
+  #door de rotor gaan
+  def rotor(seq, terug, numb, rn):
     number = []
     Rotorterug = ['empty']*26
     if terug == 0:
         for i in range(len(numb)):
             rotation = shift(seq, i, rn, numb)
             number.append(rotation[numb[i]])
-            
+
     elif terug == 1:
         for i in range(len(numb)):
             rotation = shift(seq, i, rn, numb)
-            seqrev = rotorrev(rotation)
-            number.append(seqrev[numb[i]])
-        
+            seqterug = rotorterug(rotation)
+            number.append(seqterug[numb[i]])
+
     return number
-        
-    elif rn == 3:
-        n = - math.trunc(n/675) % len(seq)
-       
-    return seq[n:] + seq[:n]
+
+RotorIM = shiftstart(RotorI, RotIstart)
+RotorIIM = shiftstart(RotorII, RotIIstart)
+RotorIIIM = shiftstart(RotorIII, RotIIIstart)
+
+SeqI = rotor(RotorIM, 0, Seq, 1)
+SeqII = rotor(RotorIIM, 0, SeqI, 2)
+SeqIII = rotor(RotorIIIM, 0, SeqII, 3)
+SeqIV = rotor(RotorIIIM, 1, SeqIV, 3)
+SeqV = rotor(RotorIIM, 1, SeqVI, 2)
+SeqVI = rotor(RotorIM, 1, SeqVII, 1)
