@@ -13,7 +13,6 @@ RotIstart = 0
 RotIIstart = 0
 RotIIIstart = 0
  
-#rotering van de start van de rotor
 def shiftstart(seq, n):
     return seq[n:] + seq[:n]
  
@@ -29,13 +28,31 @@ def shift(seq, n, rn, numb):
         n = - math.trunc(n/675) % len(seq)
        
     return seq[n:] + seq[:n]
-    
-    def shift(seq, n, rn, numb):
-    if rn == 1:
-        n = -n % len(seq)
  
-    elif rn == 2:
-        n = - math.trunc(n/25) % len(seq)
+#terug naar reflector    
+def rotorterug(seq):
+    rotorterug = ['empty']*26
+    for i in range(26):
+        rotorterug[seq[i]] = i
+    
+    return rotorterug
+ 
+#door de rotor gaan
+def rotor(seq, terug, numb, rn):
+    number = []
+    Rotorterug = ['empty']*26
+    if terug == 0:
+        for i in range(len(numb)):
+            rotation = shift(seq, i, rn, numb)
+            number.append(rotation[numb[i]])
+            
+    elif terug == 1:
+        for i in range(len(numb)):
+            rotation = shift(seq, i, rn, numb)
+            seqrev = rotorrev(rotation)
+            number.append(seqrev[numb[i]])
+        
+    return number
         
     elif rn == 3:
         n = - math.trunc(n/675) % len(seq)
