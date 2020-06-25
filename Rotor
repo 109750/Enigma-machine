@@ -1,0 +1,31 @@
+import math
+ 
+#input bericht
+message = input()
+message = message.upper()
+
+#Input settings
+RotorI = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+RotorII = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+RotorIII = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+Reflektor = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+RotIstart = 0
+RotIIstart = 0
+RotIIIstart = 0
+ 
+#rotering van de start van de rotor
+def shiftstart(seq, n):
+    return seq[n:] + seq[:n]
+ 
+#rotering van de rotors
+def shift(seq, n, rn, numb):
+    if rn == 1:
+        n = -n % len(seq)
+ 
+    elif rn == 2:
+        n = - math.trunc(n/25) % len(seq)
+        
+    elif rn == 3:
+        n = - math.trunc(n/675) % len(seq)
+       
+    return seq[n:] + seq[:n]
