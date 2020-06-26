@@ -53,3 +53,6 @@ RotorA = Enigma (RotIstart = 0)
 RotorB = Enigma (RotIIstart = 0)
 RotorC = Enigma (RotIIIstart = 0)
 machine.encrypt(input)
+
+string.lower(output)
+
