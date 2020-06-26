@@ -49,5 +49,7 @@ class Enigma:
 
     return number
 
-machineA = Enigma(1,6,32)
-machineA.encrypt(input)
+RotorA = Enigma (RotIstart = 0)
+RotorB = Enigma (RotIIstart = 0)
+RotorC = Enigma (RotIIIstart = 0)
+machine.encrypt(input)
